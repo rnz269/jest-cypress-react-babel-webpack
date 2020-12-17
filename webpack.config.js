@@ -37,6 +37,7 @@ module.exports = {
       },
     ],
   },
+  // in lesson 1, kent mentioned we can access dev server at localhost:8080
   devServer: {
     contentBase: path.join(__dirname, './public'),
     historyApiFallback: true,
