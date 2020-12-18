@@ -7,7 +7,7 @@ notifications:
   email: false
 node_js: '12'
 install: echo "install happens as part of setup"
-script: npm run setup
-after_script: npx codecov@3
+script: npm run setup # build script: npm install, lint, test, build
+after_script: npx codecov@3 # run the codecov module after the build script runs
 branches:
-  only: master
+  only: rn/jest-10-v2 # specify specific branches to build
