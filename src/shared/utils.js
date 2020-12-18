@@ -4,8 +4,6 @@ function getFormattedValue(value, language = 'en-US') {
     maximumFractionDigits: 6,
   })
 
-  console.log('hello')
-
   // Add back missing .0 in e.g. 12.0
   const match = value.match(/\.\d*?(0*)$/)
 
