@@ -14,4 +14,5 @@ module.exports = {
   },
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'], // gives us clearer assertions for dom nodes
   snapshotSerializers: ['jest-emotion'],
+  collectCoverageFrom: ['**/src/**/*.js'],
 }
