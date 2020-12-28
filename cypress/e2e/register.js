@@ -12,6 +12,7 @@ describe('registration', () => {
     cy.assertHome()
     cy.assertLoggedInAs(user)
   })
+
   it('should show an error message if theres an error registering', () => {
     cy.server().route({
       method: 'POST',

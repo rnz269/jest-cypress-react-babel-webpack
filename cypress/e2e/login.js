@@ -1,6 +1,6 @@
 describe('login', () => {
   it('should login an existing user', () => {
-    // create user
+    // create user in database
     cy.createUser().then(user => {
       // now, our test can start
       cy.visit('/')

@@ -8,17 +8,21 @@ describe('anonymous calculator', () => {
     cy.findByTestId(/total/).should('have.text', '3') // make assertion
   })
 })
+
 describe('authenticated calculator', () => {
   it('displays the username when logged in, does not display when logged out', () => {
-    // create user
+    // create user in database
     cy.createUser().then(user => {
-      // now, log in our user
-      cy.visit('/')
-      cy.findByText(/login/i).click()
-      cy.findByLabelText(/username/i).type(user.username)
-      cy.findByLabelText(/password/i).type(user.password)
-      cy.findByText(/submit/i).click()
+      // now, log in our user via a direct request
+      cy.request({
+        url: 'http://localhost:3000/login',
+        method: 'POST',
+        body: user,
+      }).then(response => {
+        window.localStorage.setItem('token', response.body.user.token) // request returns auth token, set in browser
+      })
 
+      cy.visit('/')
       // assert that we should see username
       cy.findByTestId('username-display').should('have.text', user.username)
       // log out user
