@@ -11,11 +11,8 @@ describe('anonymous calculator', () => {
 
 describe('authenticated calculator', () => {
   it('displays the username when logged in, does not display when logged out', () => {
-    // create user in database
-    cy.createUser().then(user => {
-      // now, log in our user via a direct request
-      cy.login(user)
-
+    // create user in database and log in as user
+    cy.loginAsNewUser().then(user => {
       cy.visit('/')
       // assert that we should see username
       cy.findByTestId('username-display').should('have.text', user.username)

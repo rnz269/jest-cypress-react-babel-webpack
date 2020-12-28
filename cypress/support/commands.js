@@ -42,9 +42,17 @@ Cypress.Commands.add('login', user => {
     body: user,
   }).then(response => {
     window.localStorage.setItem('token', response.body.user.token) // request returns auth token, set in browser
+    return {...response.body.user, ...user}
   })
 })
 
+Cypress.Commands.add('loginAsNewUser', () => {
+  cy.createUser().then(user => {
+    cy.login(user) // login
+  })
+})
+
+// ASSERTIONS
 Cypress.Commands.add('assertHome', () => {
   cy.url().should('eq', `${Cypress.config().baseUrl}/`)
 })
