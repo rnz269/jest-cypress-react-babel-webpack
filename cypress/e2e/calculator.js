@@ -14,13 +14,7 @@ describe('authenticated calculator', () => {
     // create user in database
     cy.createUser().then(user => {
       // now, log in our user via a direct request
-      cy.request({
-        url: 'http://localhost:3000/login',
-        method: 'POST',
-        body: user,
-      }).then(response => {
-        window.localStorage.setItem('token', response.body.user.token) // request returns auth token, set in browser
-      })
+      cy.login(user)
 
       cy.visit('/')
       // assert that we should see username
